@@ -1,0 +1,2 @@
+
+import './icontable-app';
