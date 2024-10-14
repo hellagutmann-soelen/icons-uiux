@@ -60,7 +60,7 @@ import radar from './assets/icons/radar.svg?raw';
 import receipt from './assets/icons/receipt.svg?raw';
 import share from './assets/icons/share.svg?raw';
 import magnifier from './assets/icons/magnifier.svg?raw';
-import speedMeter from './assets/icons/speed-meter.svg?raw';
+import gauge from './assets/icons/gauge.svg?raw';
 import spinner from './assets/icons/spinner.svg?raw';
 import bag from './assets/icons/bag.svg?raw';
 import usb from './assets/icons/usb.svg?raw';
@@ -348,6 +348,8 @@ import wifi from './assets/icons/wifi.svg?raw';
 import wifiSignalMeter from './assets/icons/wifi-signal-meter.svg?raw';
 import wifiWeak from './assets/icons/wifi-weak.svg?raw';
 import wifiFair from './assets/icons/wifi-fair.svg?raw';
+import wifiGood from './assets/icons/wifi-good.svg?raw';
+import wifiSlash from './assets/icons/wifi-slash.svg?raw';
 
 import { html, TemplateResult } from "lit";
 import { unsafeSVG } from "lit/directives/unsafe-svg.js";
@@ -363,6 +365,7 @@ interface IconMap {
     differentNamingConvention: boolean,
     formChanged: boolean,
     deleted?: boolean,
+    comment?: string,
   }
 }
 
@@ -422,6 +425,7 @@ const iconMap: IconMap = {
     new: false,
     formChanged: true,
     differentNamingConvention: true,
+    comment: 'Same established line width like any other icon',
   },
   'Arrow Drop Up': {
     iconName: 'Caret Up',
@@ -870,7 +874,7 @@ const iconMap: IconMap = {
     iconNameDasherized: 'grip-lines-locked',
     templateResult: html`${ unsafeSVG( gripLinesLocked ) }`,
     new: false,
-    formChanged: false,
+    formChanged: true,
     differentNamingConvention: true,
   },
   'Description': {
@@ -1897,6 +1901,14 @@ const iconMap: IconMap = {
     formChanged: true,
     differentNamingConvention: true,
   },
+  'Wifi Slash Icon': {
+    iconName: 'Wifi Slash',
+    iconNameDasherized: 'wifi-slash',
+    templateResult: html`${ unsafeSVG( wifiSlash ) }`,
+    new: true,
+    formChanged: false,
+    differentNamingConvention: false,
+  },
   'Wifi': {
     iconName: 'Wifi',
     iconNameDasherized: 'wifi',
@@ -1922,13 +1934,12 @@ const iconMap: IconMap = {
     differentNamingConvention: true,
   },
   'Wifi Bar 3': {
-    iconName: '',
-    iconNameDasherized: '',
-    templateResult: html``,
+    iconName: 'Wifi Good',
+    iconNameDasherized: 'wifi-good',
+    templateResult: html`${ unsafeSVG( wifiGood ) }`,
     new: false,
-    formChanged: false,
-    differentNamingConvention: false,
-    deleted: true,
+    formChanged: true,
+    differentNamingConvention: true,
   },
   'Wifi Bar 4': {
     iconName: '',
@@ -2205,9 +2216,9 @@ const iconMap: IconMap = {
     differentNamingConvention: true,
   },
   'Speed': {
-    iconName: 'Speed Meter',
-    iconNameDasherized: 'speed-meter',
-    templateResult: html`${ unsafeSVG( speedMeter ) }`,
+    iconName: 'Gauge',
+    iconNameDasherized: 'gauge',
+    templateResult: html`${ unsafeSVG( gauge ) }`,
     new: false,
     formChanged: true,
     differentNamingConvention: true,
@@ -2475,6 +2486,7 @@ const iconMap: IconMap = {
     new: false,
     formChanged: true,
     differentNamingConvention: false,
+    comment: 'Same wheel size than tow truck',
   },
   'Tow Truck': {
     iconName: 'Tow Truck',
@@ -2483,6 +2495,7 @@ const iconMap: IconMap = {
     new: false,
     formChanged: true,
     differentNamingConvention: false,
+    comment: 'Adjusted retangle corner radius like we have in other icons',
   },
   'Thermometer Lines Icon': {
     iconName: 'Thermometer Lines',
@@ -2579,6 +2592,7 @@ const iconMap: IconMap = {
     new: false,
     formChanged: true,
     differentNamingConvention: true,
+    comment: 'Wider entry to make it more look like a workshop/garage',
   },
   'Certificate Icon': {
     iconName: 'Certificate',
@@ -2587,6 +2601,7 @@ const iconMap: IconMap = {
     new: true,
     formChanged: false,
     differentNamingConvention: false,
+    comment: 'macs365 sidebar icon',
   },
   'Certificate Outline Icon': {
     iconName: 'Certificate Outline ',
@@ -2595,6 +2610,7 @@ const iconMap: IconMap = {
     new: true,
     formChanged: false,
     differentNamingConvention: false,
+    comment: 'macs365 sidebar icon',
   },
   'Language Icon': {
     iconName: 'Language',
@@ -2611,6 +2627,7 @@ const iconMap: IconMap = {
     new: true,
     formChanged: false,
     differentNamingConvention: false,
+    comment: 'macs365 sidebar icon',
   },
   'Laptop Smartphone Icon': {
     iconName: 'Laptop Smartphone',
@@ -2619,6 +2636,7 @@ const iconMap: IconMap = {
     new: true,
     formChanged: false,
     differentNamingConvention: false,
+    comment: 'macs365 sidebar icon',
   },
 }
 
@@ -2635,6 +2653,7 @@ const mapNewIcons = ( dataset: Dataset ):Dataset => {
     set.formChanged = iconMap[ dataset.oldIconName ].formChanged;
     set.new = iconMap[ dataset.oldIconName ].new;
     set.deleted = iconMap[ dataset.oldIconName ].deleted;
+    set.comment = iconMap[ dataset.oldIconName ].comment || '';
   }
     // newIcon: dataset.oldIconName === 'Arrow Back' ? html`${ unsafeSVG( newIcons[ './assets/icons/arrow-left.svg']()) }` : null,
 

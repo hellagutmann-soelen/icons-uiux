@@ -29,6 +29,7 @@ export interface Dataset {
   differentNamingConvention?: boolean | undefined,
   formChanged?: boolean | undefined,
   deleted?: boolean | undefined,
+  comment?: string | undefined,
 }
 @customElement('icontable-app')
 export class IcontableApp extends LitElement {
@@ -42,6 +43,7 @@ export class IcontableApp extends LitElement {
       }
     </style>
     <h1>Icon Datasheet</h1>
+    <h2>Guideline</h2>
     <ul>
       <li>Consistent wording (e.g. Resuse <strong>Bolt</strong> whenever Bolt icon is used instead of Electric, Loading, etc.)</li>
       <li>No round caps, avoid mixtures of caps</li>
@@ -52,6 +54,18 @@ export class IcontableApp extends LitElement {
       <li>Preferable if view allows it position subicon on the top right corner</li>
       <li>Replace Disabled, Off, Offline etc. with Slash to keep why action cannot be used neutral</li>
       <li>Arrow language should be as much as consistent as possible</li>
+    </ul>
+    <h2>Todos</h2>
+    <ul>
+      <li>Adjust clock hand widths</li>
+      <li>Exclamation and Question dot should be round</li>
+      <li>Adjust wifi icon</li>
+      <li>Adjust slash</li>
+      <li>Adjust repeat</li>
+      <li>Adjust car play</li>
+      <li>Add mark feature</li>
+      <li>Add dynamic imports if in screen</li>
+
     </ul>
     <div id="sticky">
       <label for="size">Size (${ this._size }px)</label>
@@ -105,6 +119,10 @@ export class IcontableApp extends LitElement {
               <dt>Deleted</dt>
               <dd>
                 ${ dataset.deleted ? html`<span>❌</span>`: html`<span>-</span>`}
+              </dd>
+              <dt>Comment</dt>
+              <dd>
+                ${ dataset.comment ? html`<span>${ dataset.comment }</span>`: html`<span>-</span>`}
               </dd>
             </dl>
           </div>
@@ -366,6 +384,9 @@ export class IcontableApp extends LitElement {
       }, {
         indexIconToFind: 'Close',
         fakeIconName: 'Xmark Square Outline Icon',
+      }, {
+        indexIconToFind: 'Wifi',
+        fakeIconName: 'Wifi Slash Icon',
       }, {
         indexIconToFind: 'Add',
         fakeIconName: 'Minus Square Outline Icon',
