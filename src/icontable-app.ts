@@ -390,12 +390,6 @@ export class IcontableApp extends LitElement {
       }, {
         indexIconToFind: 'Add',
         fakeIconName: 'Minus Square Outline Icon',
-      }, {
-        indexIconToFind: 'Add',
-        fakeIconName: 'Minus Square Outline Icon',
-      }, {
-        indexIconToFind: 'Add',
-        fakeIconName: 'Minus Square Outline Icon',
       },
     ])
 
