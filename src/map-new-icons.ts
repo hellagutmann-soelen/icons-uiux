@@ -38,6 +38,7 @@ import paperPlaneTopOutline from './assets/icons/paper-plane-top-outline.svg?raw
 
 import screen from './assets/icons/screen.svg?raw';
 import screenshot from './assets/icons/screenshot.svg?raw';
+import screenPlayCircle from './assets/icons/screen-play-circle.svg?raw';
 import fullscreen from './assets/icons/fullscreen.svg?raw';
 import fullscreenExit from './assets/icons/fullscreen-exit.svg?raw';
 
@@ -161,17 +162,14 @@ import asa from './assets/icons/asa.svg?raw';
 import actuator from './assets/icons/actuator.svg?raw';
 
 import adasHardware from './assets/icons/adas-hardware.svg?raw';
-import adasGuided from './assets/icons/adas-guided.svg?raw';
 
 import battery from './assets/icons/battery.svg?raw';
-import batteryAlmostFull from './assets/icons/battery-almost-full.svg?raw';
 import batteryBolt from './assets/icons/battery-bolt.svg?raw';
 import batteryOutline from './assets/icons/battery-outline.svg?raw';
 import batteryExclamation from './assets/icons/battery-exclamation.svg?raw';
-import batteryHalf from './assets/icons/battery-half.svg?raw';
-import batteryLow from './assets/icons/battery-low.svg?raw';
-import batteryQuarter from './assets/icons/battery-quarter.svg?raw';
-import batteryThreeQuarters from './assets/icons/battery-three-quarters.svg?raw';
+import batteryFair from './assets/icons/battery-fair.svg?raw';
+import batteryWeak from './assets/icons/battery-weak.svg?raw';
+import batteryGood from './assets/icons/battery-good.svg?raw';
 
 import language from './assets/icons/language.svg?raw';
 import creditCardDollar from './assets/icons/credit-card-dollar.svg?raw';
@@ -370,7 +368,7 @@ interface IconMap {
 }
 
 const iconMap: IconMap = {
-  'Arrow Upward': {
+  'Arrow Up Icon': {
     iconName: 'Arrow Up',
     iconNameDasherized: 'arrow-up',
     templateResult: html`${ unsafeSVG( arrowUp )}`,
@@ -378,7 +376,7 @@ const iconMap: IconMap = {
     formChanged: false,
     differentNamingConvention: false,
   },
-  'Arrow Downward': {
+  'Arrow Down Icon': {
     iconName: 'Arrow Down',
     iconNameDasherized: 'arrow-down',
     templateResult: html`${ unsafeSVG( arrowDown )}`,
@@ -547,7 +545,7 @@ const iconMap: IconMap = {
     formChanged: false,
     differentNamingConvention: true,
   },
-  'Account Circle Not Outline': {
+  'Account Circle Icon': {
     iconName: 'User Circle',
     iconNameDasherized: 'user-circle',
     templateResult: html`${ unsafeSVG( userCircle ) }`,
@@ -612,9 +610,9 @@ const iconMap: IconMap = {
     differentNamingConvention: false,
   },
   'ADAS Guided Calibration': {
-    iconName: 'Adas Guided',
-    iconNameDasherized: 'adas-guided',
-    templateResult: html`${ unsafeSVG( adasGuided ) }`,
+    iconName: 'Screen Play Circle',
+    iconNameDasherized: 'screen-play-circle',
+    templateResult: html`${ unsafeSVG( screenPlayCircle ) }`,
     new: false,
     formChanged: true,
     differentNamingConvention: true,
@@ -660,25 +658,26 @@ const iconMap: IconMap = {
     differentNamingConvention: true,
   },
   'Battery 6': {
-    iconName: 'Battery Almost Full',
-    iconNameDasherized: 'battery-almost-full',
-    templateResult: html`${ unsafeSVG( batteryAlmostFull ) }`,
+    iconName: '',
+    iconNameDasherized: '',
+    templateResult: html``,
+    deleted: true,
     new: false,
     formChanged: false,
-    differentNamingConvention: true,
+    differentNamingConvention: false,
   },
   'Battery 5': {
-    iconName: 'Battery Three Quarters',
-    iconNameDasherized: 'battery-three-quarters',
-    templateResult: html`${ unsafeSVG( batteryThreeQuarters ) }`,
+    iconName: 'Battery Good',
+    iconNameDasherized: 'battery-good',
+    templateResult: html`${ unsafeSVG( batteryGood ) }`,
     new: false,
     formChanged: false,
     differentNamingConvention: true,
   },
   'Battery 4': {
-    iconName: 'Battery Half',
-    iconNameDasherized: 'battery-half',
-    templateResult: html`${ unsafeSVG( batteryHalf ) }`,
+    iconName: 'Battery Fair',
+    iconNameDasherized: 'battery-fair',
+    templateResult: html`${ unsafeSVG( batteryFair ) }`,
     new: false,
     formChanged: false,
     differentNamingConvention: true,
@@ -693,20 +692,21 @@ const iconMap: IconMap = {
     deleted: true,
   },
   'Battery 2': {
-    iconName: 'Battery Quarter',
-    iconNameDasherized: 'battery-quarter',
-    templateResult: html`${ unsafeSVG( batteryQuarter ) }`,
+    iconName: 'Battery Weak',
+    iconNameDasherized: 'battery-weak',
+    templateResult: html`${ unsafeSVG( batteryWeak ) }`,
     new: false,
     formChanged: false,
     differentNamingConvention: true,
   },
   'Battery 1': {
-    iconName: 'Battery Low',
-    iconNameDasherized: 'battery-low',
-    templateResult: html`${ unsafeSVG( batteryLow ) }`,
+    iconName: '',
+    iconNameDasherized: '',
+    templateResult: html``,
+    deleted: true,
     new: false,
     formChanged: false,
-    differentNamingConvention: true,
+    differentNamingConvention: false,
   },
   'Battery 0': {
     iconName: 'Battery Outline',

@@ -3,8 +3,11 @@ import { customElement, state } from 'lit/decorators.js'
 import iconsOld from './assets/icons-old.svg?raw'
 import mapNewIcons from './map-new-icons';
 import './components/icontable-card';
+import './components/icontable-topbar';
 import spliceNewIcons from './splice-new-icons';
 
+
+export type NamingConvention = 'component' | 'dasherized' | 'humanized';
 
 const parser = new DOMParser();
 const svg = parser
@@ -58,28 +61,15 @@ export class IcontableApp extends LitElement {
     <h2>Todos</h2>
     <ul>
       <li>Adjust clock hand widths</li>
-      <li>Exclamation and Question dot should be round</li>
-      <li>Adjust wifi icon</li>
       <li>Adjust slash</li>
-      <li>Adjust repeat</li>
-      <li>Adjust car play</li>
       <li>Add mark feature</li>
       <li>Add dynamic imports if in screen</li>
-
     </ul>
     <div id="sticky">
-      <label for="size">Size (${ this._size }px)</label>
-      <input type="range" id="size" name="size" step="8" min="24" max="128" value="${ this._size }" @input="${ ( event:Event) => {
-        this._size = Number( ( event.target as HTMLInputElement ).value );
-      }}">
-      <label for="sort">Sort</label>
-      <select id="sort" name="sort">
-        <option value="old-name">Old Name</option>
-        <option value="name">Name</option>
-        <option value="new">New</option>
-        <option value="form-changed">Form Changed</option>
-        <option value="different-naming-convention">Different Naming Convention</option>
-      </select>
+      <icontable-topbar
+        @size=${ ( event:CustomEvent ) => this._size = event.detail }
+        @naming-convention=${ ( event:CustomEvent ) => this._namingConvention = event.detail }
+      ></icontable-topbar>
     </div>
     <div id="grid">
       ${ this._icons.map( dataset => html`
@@ -98,11 +88,7 @@ export class IcontableApp extends LitElement {
               </dd>
               <dt>Name</dt>
               <dd>
-                ${ dataset.iconName ? html`<span>${ dataset.iconName }</span>`: html`<span>-</span>`}
-              </dd>
-              <dt>Dasherized</dt>
-              <dd>
-                ${ dataset.iconNameDasherized ? html`<span>${ dataset.iconNameDasherized }</span>`: html`<span>-</span>`}
+                ${ dataset.iconName ? html`<span>${ this._namingConvention === 'component' ? dataset.iconName.split( ' ' ).join('') : this._namingConvention === 'dasherized' ? dataset.iconName.toLowerCase().split( ' ' ).join( '-' ) : dataset.iconName }</span>`: html`<span>-</span>`}
               </dd>
               <dt>New</dt>
               <dd>
@@ -135,6 +121,8 @@ export class IcontableApp extends LitElement {
   @state() _icons: Dataset[] = [];
   @state() _size = 128;
 
+  @state() _namingConvention: NamingConvention = 'component';
+
   constructor() {
     super();
 
@@ -149,13 +137,13 @@ export class IcontableApp extends LitElement {
     this._icons = spliceNewIcons( this._icons, [
       {
         indexIconToFind: 'Arrow Back',
-        fakeIconName: 'Arrow Upward',
+        fakeIconName: 'Arrow Up Icon',
       }, {
         indexIconToFind: 'Arrow Forward',
-        fakeIconName: 'Arrow Downward',
+        fakeIconName: 'Arrow Down Icon',
       }, {
         indexIconToFind: 'Account Circle',
-        fakeIconName: 'Account Circle Not Outline',
+        fakeIconName: 'Account Circle Icon',
       }, {
         indexIconToFind: 'Electric Vehicle',
         fakeIconName: 'Car Bolt Icon',
@@ -395,6 +383,17 @@ export class IcontableApp extends LitElement {
 
     this._icons = this._icons
       .map( mapNewIcons );
+    const jsonObject = this._icons.map( icon => ({
+        oldName: icon.oldIconName,
+        name: icon.iconName ? icon.iconName.toLowerCase().split( ' ' ).join( '-' ) : '',
+        comment: icon.comment,
+        // new: icon.new ? true: false,
+        // deleted: icon.deleted ? true : false,
+        // differentNamingConvention : icon.differentNamingConvention ? true : false,
+        change: icon.formChanged ? true : false,
+      }));
+
+      console.log( JSON.stringify( jsonObject, null, 2 ) );
   }
 
 
@@ -405,8 +404,6 @@ export class IcontableApp extends LitElement {
     #sticky {
       position: sticky;
       top: 0;
-      background: white;
-      padding: 8px
     }
     .old-name {
       color: #8f8f8f;
