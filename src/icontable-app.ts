@@ -3,8 +3,24 @@ import { customElement, state } from 'lit/decorators.js'
 import './components/icontable-card';
 import './components/icontable-topbar';
 import './components/icontable-icon';
+import './components/icontable-sanitycheck';
 import data from './data';
 
+
+
+const marked = JSON.parse( localStorage.getItem( 'icontable__marked' ) || '{}' );
+const dataWithMarked = data.map( dataset => {
+  return { ...dataset, marked: marked[dataset.id] || '' };
+} );
+
+const amountDataOld = data.filter( dataset => dataset.oldName ).length;
+const amountDataNew = data.filter( dataset => dataset.name ).length;
+
+const amountIconFolderOld = Object.keys( import.meta.glob('./assets/icons-old/*.svg' ) ).length;
+const amountIconFolderNew = Object.keys( import.meta.glob('./assets/icons/*.svg' ) ).length;
+
+const componentize = ( value: string ) => value.split( '-' ).map( word => word.charAt( 0 ).toUpperCase() + word.slice( 1 ) ).join( '' );
+const humanize = ( value: string ) => value.split( '-' ).map( word => word.charAt( 0 ).toUpperCase() + word.slice( 1 ) ).join( ' ' );
 
 export type NamingConvention = 'component' | 'dasherized' | 'humanized';
 
@@ -17,6 +33,19 @@ export type NamingConvention = 'component' | 'dasherized' | 'humanized';
 
 @customElement('icontable-app')
 export class IcontableApp extends LitElement {
+
+  @state() _size = 128;
+  @state() _data = dataWithMarked;
+
+  @state() _namingConvention: NamingConvention = 'component';
+
+  private _storeMarked = () => {
+
+    const marked = this._data.filter( dataset => dataset.marked ).reduce( ( acc, data ) => {
+      return { ...acc, [data.id]: data.marked };
+    }, {} );
+    localStorage.setItem( 'icontable__marked', JSON.stringify( marked ) );
+  }
 
   render() {
     return html`
@@ -37,43 +66,68 @@ export class IcontableApp extends LitElement {
     <ul>
       <li>Adjust clock hand widths</li>
       <li>Adjust slash</li>
-      <li>Add mark feature</li>
-      <li>Add dynamic imports if in screen</li>
     </ul>
     <div id="sticky">
       <icontable-topbar
         @size=${ ( event:CustomEvent ) => this._size = event.detail }
+        @sort=${ ( event:CustomEvent ) => {
+          this._data = [...this._data].sort( ( a, b ) => {
+            if( event.detail === 'old-name' ) {
+              return a.oldName.toUpperCase() < b.oldName.toUpperCase() ? -1 : 1;
+            } else if( event.detail === 'name' ) {
+              return a.name.toUpperCase() < b.name.toUpperCase() ? -1 : 1;
+            } else if( event.detail === 'new' ) {
+              return a.oldName ? 1 : -1;
+            } else if( event.detail === 'form-changed' ) {
+              return a.change ? -1 : 1;
+            } else if ( event.detail === 'different-naming-convention' ) {
+              const deletedEntry = !a.name;
+              const newEntry = !a.oldName;
+              const humanized = humanize( a.name );
+              return (!newEntry && !deletedEntry) && a.oldName !== humanized ? -1 : 1;
+            } else {
+              return 1;
+            }
+          });
+        } }
         @naming-convention=${ ( event:CustomEvent ) => this._namingConvention = event.detail }
+        .old=${ amountDataOld }
+        .new=${ amountDataNew }
+        .folderOld=${ amountIconFolderOld }
+        .folderNew=${ amountIconFolderNew }
       ></icontable-topbar>
     </div>
     <div id="grid">
-      ${ data.map( dataset => {
-        const humanized = dataset.oldName.split( ' ' ).map( word => word.charAt( 0 ).toUpperCase() + word.slice( 1 ) ).join( ' ' );
+      ${ this._data.map( dataset => {
+        const componentized = componentize( dataset.name );
+        const humanized = humanize( dataset.name );
+        const deletedEntry = !dataset.name;
+        const newEntry = !dataset.oldName;
         return html`
-        <icontable-card>
-          <div slot="old-icon">
-            <icontable-icon
-              .size=${ this._size }
-              .name=${ dataset.oldName }
-              .old=${ true }
-              ></icontable-icon>
-          </div>
-          <div slot="new-icon">
-            <icontable-icon
-              .size=${ this._size }
-              .name=${ dataset.name }></icontable-icon>
-          </div>
+        <icontable-card
+          .marked="${ dataset.marked || '' }"
+        >
+          <icontable-icon
+            slot="old-icon"
+            .size=${ this._size }
+            .name=${ dataset.oldName }
+            .old=${ true }
+          ></icontable-icon>
+          <icontable-icon
+            slot="new-icon"
+            .size=${ this._size }
+            .name=${ dataset.name }
+          ></icontable-icon>
           <div>
             <dl>
-              <dt class="old-name">Old Name</dt>
-              <dd class="old-name">${ dataset.oldName ? dataset.oldName : '-' }</dd>
+              <dt class="old-name">Old Name</dt><dd class="old-name">${ dataset.oldName ? dataset.oldName : '-' }</dd>
               <dt>Name</dt>
               <dd>
-                ${ dataset.name ? html`<span>${ humanized }</span>`: html`<span>-</span>`}
+                ${ dataset.name ? html`<span>${ this._namingConvention === 'humanized' ? humanized : this._namingConvention === 'component' ? componentized : dataset.name }</span>`: html`<span>-</span>`}
               </dd>
               <dt>New</dt>
               <dd>
-                ${ !dataset.oldName ? html`<span>✅</span>`: html`<span>-</span>`}
+                ${ newEntry ? html`<span>✅</span>`: html`<span>-</span>`}
               </dd>
               <dt>Form Changed</dt>
               <dd>
@@ -81,33 +135,39 @@ export class IcontableApp extends LitElement {
               </dd>
               <dt>Different Naming convention</dt>
               <dd>
-                ${ dataset.oldName === humanized ? html`<span>✅</span>`: html`<span>-</span>`}
+                ${ (!newEntry && !deletedEntry) && dataset.oldName !== humanized ? html`<span>✅</span>`: html`<span>-</span>`}
               </dd>
               <dt>Deleted</dt>
               <dd>
-                ${ !dataset.name ? html`<span>❌</span>`: html`<span>-</span>`}
+                ${ deletedEntry ? html`<span>❌</span>`: html`<span>-</span>`}
               </dd>
               <dt>Comment</dt>
               <dd>
                 ${ dataset.comment ? html`<span>${ dataset.comment }</span>`: html`<span>-</span>`}
               </dd>
+              <dt>Sanity Check</dt>
+              <dd>
+                <icontable-sanitycheck .name="${ dataset.name }"></icontable-sanitycheck>
+              </dd>
             </dl>
+            <button @click="${ () => {
+              if( !dataset.marked ) {
+                dataset.marked = 'changed';
+              } else if ( dataset.marked && dataset.marked === 'changed' ) {
+               console.log('hello')
+                dataset.marked = 'deleted';
+              } else if ( dataset.marked && dataset.marked === 'deleted' ) {
+              dataset.marked = '';
+              }
+              this.requestUpdate();
+              this._storeMarked();
+            }}">Mark it</button>
           </div>
         </icontable-card>
         ` } ) }
     </div>
     `
   }
-
-  @state() _size = 128;
-
-  @state() _namingConvention: NamingConvention = 'component';
-
-  constructor() {
-    super();
-
-  }
-
 
   static styles = css`
     :host {
@@ -132,7 +192,6 @@ export class IcontableApp extends LitElement {
       display: grid;
       grid-template-columns: repeat(auto-fill, 450px);
       gap: 16px;
-      /* grid-template: 1fr / 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
     }
     .old-icon svg {
       fill: grey;

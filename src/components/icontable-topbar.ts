@@ -15,6 +15,8 @@ export class IcontableTopbar extends LitElement {
   @property( { type: Number } ) size = 128;
   @property( { type: Number } ) old = 0;
   @property( { type: Number } ) new = 0;
+  @property( { type: Number, attribute: 'folder-old' } ) folderOld = 0;
+  @property( { type: Number, attribute: 'folder-new' } ) folderNew = 0;
 
   render() {
     return html`
@@ -32,7 +34,14 @@ export class IcontableTopbar extends LitElement {
         this.dispatchEvent( new CustomEvent( 'size', { detail: size } ) );
       }}">
       <label for="sort">Sort</label>
-      <select id="sort" name="sort">
+      <select
+        id="sort"
+        name="sort"
+        @input="${ ( event: Event ) => {
+          const sort = ( event.target as HTMLInputElement ).value;
+          this.dispatchEvent( new CustomEvent( 'sort', { detail: sort } ) );
+        } }"
+      >
         <option value="old-name">Old Name</option>
         <option value="name">Name</option>
         <option value="new">New</option>
@@ -48,7 +57,8 @@ export class IcontableTopbar extends LitElement {
         <option value="dasherized">Dasherized (import)</option>
         <option value="humanized">Humanized</option>
       </select>
-      Old: ${ this.old } New: ${ this.new }
+      Old: <span title="amount of old icons dataset">${ this.old }</span>/<span title="amount of old icons in folder">${ this.folderOld }</span>
+      New: <span title="amount of new icons dataset">${ this.new }</span>/<span title="amount of new icons in folder">${ this.folderNew }</span>
     `
   }
 

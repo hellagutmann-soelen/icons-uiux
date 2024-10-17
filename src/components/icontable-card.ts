@@ -1,5 +1,6 @@
 import { LitElement, css, html } from 'lit'
-import { customElement, } from 'lit/decorators.js'
+import { customElement, property, } from 'lit/decorators.js'
+import { Marked } from '../data';
 
 /**
  * An example element.
@@ -11,9 +12,12 @@ import { customElement, } from 'lit/decorators.js'
 @customElement('icontable-card')
 export class IcontableCard extends LitElement {
 
+  @property( { type: String, reflect: true, } ) marked: Marked = '';
+
   render() {
     return html`
     <div id="card">
+      <div id="mark"></div>
       <div id="card-lead">
         <div id="card-lead__old-icon">
           <slot name="old-icon"></slot>
@@ -32,9 +36,24 @@ export class IcontableCard extends LitElement {
   static styles = css`
     :host {
       display: block;
+      position: relative;
       border: 1px solid #efefef;
       padding: 8px;
       --icontable-card__background-color-lead: #efefef;
+    }
+    :host([marked="changed"]) #mark {
+      background: linear-gradient(to bottom left, green 50%,transparent 50%) 100% 0/50px 50px no-repeat;
+    }
+    :host([marked="deleted"]) #mark {
+      background: linear-gradient(to bottom left, red 50%,transparent 50%) 100% 0/50px 50px no-repeat;
+    }
+    #mark {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      pointer-events: none;
     }
     #card-lead {
       display: flex;
