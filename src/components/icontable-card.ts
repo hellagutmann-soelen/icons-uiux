@@ -28,6 +28,11 @@ export class IcontableCard extends LitElement {
       </div>
       <div id="card-content">
         <slot></slot>
+        <button
+          id="mark-it"
+          @click="${ () => {
+          this.dispatchEvent( new CustomEvent( 'mark' ) );
+        } }">Mark It</button>
       </div>
     </div>
     `
@@ -46,6 +51,18 @@ export class IcontableCard extends LitElement {
     }
     :host([marked="deleted"]) #mark {
       background: linear-gradient(to bottom left, red 50%,transparent 50%) 100% 0/50px 50px no-repeat;
+    }
+    #mark-it {
+      border: none;
+      background: white;
+      padding: 16px 8px;
+      /* color: white; */
+      display: block;
+      width: 100%;
+      cursor: pointer;
+    }
+    #mark-it:hover, #mark-it:focus, #mark-it:active {
+      background: #efefef;
     }
     #mark {
       position: absolute;

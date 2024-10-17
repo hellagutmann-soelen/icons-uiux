@@ -106,6 +106,18 @@ export class IcontableApp extends LitElement {
         return html`
         <icontable-card
           .marked="${ dataset.marked || '' }"
+          @mark="${ () => {
+            if( !dataset.marked ) {
+              dataset.marked = 'changed';
+            } else if ( dataset.marked && dataset.marked === 'changed' ) {
+              console.log('hello')
+              dataset.marked = 'deleted';
+            } else if ( dataset.marked && dataset.marked === 'deleted' ) {
+            dataset.marked = '';
+            }
+            this.requestUpdate();
+            this._storeMarked();
+          }}"
         >
           <icontable-icon
             slot="old-icon"
@@ -150,18 +162,6 @@ export class IcontableApp extends LitElement {
                 <icontable-sanitycheck .name="${ dataset.name }"></icontable-sanitycheck>
               </dd>
             </dl>
-            <button @click="${ () => {
-              if( !dataset.marked ) {
-                dataset.marked = 'changed';
-              } else if ( dataset.marked && dataset.marked === 'changed' ) {
-               console.log('hello')
-                dataset.marked = 'deleted';
-              } else if ( dataset.marked && dataset.marked === 'deleted' ) {
-              dataset.marked = '';
-              }
-              this.requestUpdate();
-              this._storeMarked();
-            }}">Mark it</button>
           </div>
         </icontable-card>
         ` } ) }
@@ -176,6 +176,7 @@ export class IcontableApp extends LitElement {
     #sticky {
       position: sticky;
       top: 0;
+      z-index: 1;
     }
     .old-name {
       color: #8f8f8f;
