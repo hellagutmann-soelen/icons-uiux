@@ -55,41 +55,41 @@ export class IcontableApp extends LitElement {
       <summary>Guidelines</summary>
       <icontable-guideline>
         <h3>Consistent Wording</h3>
-        <img src="guidelines/do-consistent-wording.svg" width="400" slot="do" alt="Do" />
+        <img src="guidelines/do-consistent-wording.svg" slot="do" alt="Do" />
         <div slot="do-description">
           When using the same symbolic in icons: <strong>Reuse</strong> the same word.
         </div>
-        <img src="guidelines/dont-word-inconsistent.svg" width="400" slot="dont" alt="Do" />
+        <img src="guidelines/dont-word-inconsistent.svg" slot="dont" alt="Do" />
         <div slot="dont-description">
           Do not use different words for the same symbolic.
         </div>
       </icontable-guideline>
       <icontable-guideline>
         <h3>Line Caps</h3>
-        <img src="guidelines/do-square-line-caps.svg" width="400" slot="do" alt="Do" />
+        <img src="guidelines/do-square-line-caps.svg" slot="do" alt="Do" />
         <div slot="do-description">
           Use square caps for lines before the stroke into a path, avoid mixtures of caps
         </div>
-        <img src="guidelines/dont-use-round-line-caps.svg" width="400" slot="dont" alt="Do" />
+        <img src="guidelines/dont-use-round-line-caps.svg" slot="dont" alt="Do" />
         <div slot="dont-description">
           No round caps
         </div>
       </icontable-guideline>
       <icontable-guideline>
         <h3>Variation Naming</h3>
-        <img src="guidelines/do-consistent-wording-variation-naming.svg" width="400" slot="do" alt="Do" />
+        <img src="guidelines/do-consistent-wording-variation-naming.svg" slot="do" alt="Do" />
         <div slot="do-description">
           The default icon is alwayys filled and <strong>does not need a variation naming convention.</strong>
           For lined out Icons: Add <strong>Outline</strong> to the <strong>end</strong> of their name.
         </div>
-        <img src="guidelines/dont-do-inconsistent-variation-naming.svg" width="400" slot="dont" alt="Dont" />
+        <img src="guidelines/dont-do-inconsistent-variation-naming.svg" slot="dont" alt="Dont" />
         <div slot="dont-description">
           Do not use <strong>Full</strong> or <strong>Filled</strong> if you want to name the default icon. Be consistent when naming outlined variations.
         </div>
       </icontable-guideline>
       <icontable-guideline>
         <h3>Subicons</h3>
-        <img src="guidelines/good-subicon-conventions.svg" width="400" slot="do" alt="Do" />
+        <img src="guidelines/good-subicon-conventions.svg" slot="do" alt="Do" />
         <div slot="do-description">
           <ul>
             <li>If visually possible: Place it on the top right</li>
@@ -98,7 +98,7 @@ export class IcontableApp extends LitElement {
             <li>If subicon contains a circle: Make sure it is the only circle and add <strong>circle</strong> at the end of the name</li>
           </ul>
         </div>
-        <img src="guidelines/bad-subicon-conventions.svg" width="400" slot="dont" alt="Dont" />
+        <img src="guidelines/bad-subicon-conventions.svg" slot="dont" alt="Dont" />
         <div slot="dont-description">
           <ul>
             <li>Subicon should not be the same height as the main icon.</li>
@@ -108,13 +108,13 @@ export class IcontableApp extends LitElement {
       </icontable-guideline>
       <icontable-guideline>
         <h3>Slash state</h3>
-        <img src="guidelines/do-slash-convention.svg" width="400" slot="do" alt="Do" />
+        <img src="guidelines/do-slash-convention.svg" slot="do" alt="Do" />
         <div slot="do-description">
           <ul>
             <li>Use <strong>Slash</strong> if an icon suggest this is the disabled or off state</li>
           </ul>
         </div>
-        <img src="guidelines/dont-use-off-and-disabled.svg" width="400" slot="dont" alt="Dont" />
+        <img src="guidelines/dont-use-off-and-disabled.svg" slot="dont" alt="Dont" />
         <div slot="dont-description">
           <ul>
             <li>Don't use disabled, off, closed etc. Instead use the neutral equivalent <strong>Slash</strong></li>
@@ -127,7 +127,7 @@ export class IcontableApp extends LitElement {
       </icontable-guideline>
       <icontable-guideline>
         <h3>Naming icons</h3>
-        <img src="guidelines/do-name-it-as-you-see-it.svg" width="400" slot="do" alt="Do" />
+        <img src="guidelines/do-name-it-as-you-see-it.svg" slot="do" alt="Do" />
         <div slot="do-description">
           <ul>
             <li>Name things as you see them. E.g. if you see an eye, name it as an eye.</li>
@@ -135,7 +135,7 @@ export class IcontableApp extends LitElement {
             <li>If icon contains a subicon: Name it first by the primary icon than by its Subicon, e.g. Battery Bolt</li>
           </ul>
         </div>
-        <img src="guidelines/dont-name-as-usage.svg" width="400" slot="dont" alt="Dont" />
+        <img src="guidelines/dont-name-as-usage.svg" slot="dont" alt="Dont" />
         <div slot="dont-description">
           <ul>
             <li>Don't name them as they will be used in the end (e.g. settings instead of gear because this will be later on used as an icon for the settings page).</li>
@@ -282,7 +282,7 @@ export class IcontableApp extends LitElement {
     }
     #grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, 450px);
+      grid-template-columns: repeat(auto-fill, 400px);
       gap: 16px;
     }
     .old-icon svg {

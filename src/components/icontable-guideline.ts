@@ -48,6 +48,7 @@ export class IcontableGuideline extends LitElement {
     }
     #guideline {
       display: flex;
+      flex-wrap: wrap;
       gap: 16px;
     }
     .label {
@@ -66,8 +67,12 @@ export class IcontableGuideline extends LitElement {
     .caption {
       padding: 16px;
     }
+    ::slotted(img) {
+      width: 100%;
+    }
     #do, #dont {
-    flex-basis: 0;
+      min-width: 400px;
+      flex-basis: 0;
     }
     #do > .label {
       background: var( --icontable-success );
