@@ -4,6 +4,7 @@ import './components/icontable-card';
 import './components/icontable-topbar';
 import './components/icontable-icon';
 import './components/icontable-sanitycheck';
+import './components/icontable-guideline';
 import data from './data';
 
 
@@ -37,7 +38,7 @@ export class IcontableApp extends LitElement {
   @state() _size = 128;
   @state() _data = dataWithMarked;
 
-  @state() _namingConvention: NamingConvention = 'component';
+  @state() _namingConvention: NamingConvention = 'humanized';
 
   private _storeMarked = () => {
 
@@ -49,23 +50,112 @@ export class IcontableApp extends LitElement {
 
   render() {
     return html`
-    <h1>Icon Datasheet</h1>
-    <h2>Guideline</h2>
-    <ul>
-      <li>Consistent wording (e.g. Resuse <strong>Bolt</strong> whenever Bolt icon is used instead of Electric, Loading, etc.)</li>
-      <li>No round caps, avoid mixtures of caps</li>
-      <li>Comparing to naming convention other icon libraries (e.g. <a href="https://fontawesome.com/search" target="_blank">apply</a>)</li>
-      <li>More consistent variations (instead of mixin icons with filled, outline, border, full etc. : Filled is default, outline is the variation)</li>
-      <li>Lines inside an icon should be transformed into paths and if possible have a with of <strong>2px</strong></li>
-      <li>An Icon can contain 1 subicon. Subicon should be a slighly smaller version from the original but width of lines should be still the same (2px)</li>
-      <li>Preferable if view allows it position subicon on the top right corner</li>
-      <li>Replace Disabled, Off, Offline etc. with Slash to keep why action cannot be used neutral</li>
-      <li>Arrow language should be as much as consistent as possible</li>
-    </ul>
+    <h1>Icons UIUX</h1>
+    <details>
+      <summary>Guidelines</summary>
+      <icontable-guideline>
+        <h3>Consistent Wording</h3>
+        <img src="guidelines/do-consistent-wording.svg" width="400" slot="do" alt="Do" />
+        <div slot="do-description">
+          When using the same symbolic in icons: <strong>Reuse</strong> the same word.
+        </div>
+        <img src="guidelines/dont-word-inconsistent.svg" width="400" slot="dont" alt="Do" />
+        <div slot="dont-description">
+          Do not use different words for the same symbolic.
+        </div>
+      </icontable-guideline>
+      <icontable-guideline>
+        <h3>Line Caps</h3>
+        <img src="guidelines/do-square-line-caps.svg" width="400" slot="do" alt="Do" />
+        <div slot="do-description">
+          Use square caps for lines before the stroke into a path, avoid mixtures of caps
+        </div>
+        <img src="guidelines/dont-use-round-line-caps.svg" width="400" slot="dont" alt="Do" />
+        <div slot="dont-description">
+          No round caps
+        </div>
+      </icontable-guideline>
+      <icontable-guideline>
+        <h3>Variation Naming</h3>
+        <img src="guidelines/do-consistent-wording-variation-naming.svg" width="400" slot="do" alt="Do" />
+        <div slot="do-description">
+          The default icon is alwayys filled and <strong>does not need a variation naming convention.</strong>
+          For lined out Icons: Add <strong>Outline</strong> to the <strong>end</strong> of their name.
+        </div>
+        <img src="guidelines/dont-do-inconsistent-variation-naming.svg" width="400" slot="dont" alt="Dont" />
+        <div slot="dont-description">
+          Do not use <strong>Full</strong> or <strong>Filled</strong> if you want to name the default icon. Be consistent when naming outlined variations.
+        </div>
+      </icontable-guideline>
+      <icontable-guideline>
+        <h3>Subicons</h3>
+        <img src="guidelines/good-subicon-conventions.svg" width="400" slot="do" alt="Do" />
+        <div slot="do-description">
+          <ul>
+            <li>If visually possible: Place it on the top right</li>
+            <li>An icon can only contain <strong>one subicon</strong></li>
+            <li>Subicons should be smaller than the main icon e.g. around 9px</li>
+            <li>If subicon contains a circle: Make sure it is the only circle and add <strong>circle</strong> at the end of the name</li>
+          </ul>
+        </div>
+        <img src="guidelines/bad-subicon-conventions.svg" width="400" slot="dont" alt="Dont" />
+        <div slot="dont-description">
+          <ul>
+            <li>Subicon should not be the same height as the main icon.</li>
+            <li>Do not use more than one subicon.</li>
+          </ul>
+        </div>
+      </icontable-guideline>
+      <icontable-guideline>
+        <h3>Slash state</h3>
+        <img src="guidelines/do-slash-convention.svg" width="400" slot="do" alt="Do" />
+        <div slot="do-description">
+          <ul>
+            <li>Use <strong>Slash</strong> if an icon suggest this is the disabled or off state</li>
+          </ul>
+        </div>
+        <img src="guidelines/dont-use-off-and-disabled.svg" width="400" slot="dont" alt="Dont" />
+        <div slot="dont-description">
+          <ul>
+            <li>Don't use disabled, off, closed etc. Instead use the neutral equivalent <strong>Slash</strong></li>
+            <li>
+              Avoid naming something disabled, off, closed, slash etc. If the icon does not suggest it is a disabled state.<br>
+              For example the power icon can be used for on and off state.
+            </li>
+          </ul>
+        </div>
+      </icontable-guideline>
+      <icontable-guideline>
+        <h3>Naming icons</h3>
+        <img src="guidelines/do-name-it-as-you-see-it.svg" width="400" slot="do" alt="Do" />
+        <div slot="do-description">
+          <ul>
+            <li>Name things as you see them. E.g. if you see an eye, name it as an eye.</li>
+            <li>This practise is common since icons could be also used for different usages</li>
+            <li>If icon contains a subicon: Name it first by the primary icon than by its Subicon, e.g. Battery Bolt</li>
+          </ul>
+        </div>
+        <img src="guidelines/dont-name-as-usage.svg" width="400" slot="dont" alt="Dont" />
+        <div slot="dont-description">
+          <ul>
+            <li>Don't name them as they will be used in the end (e.g. settings instead of gear because this will be later on used as an icon for the settings page).</li>
+          </ul>
+        </div>
+      </icontable-guideline>
+      <h3>Additional tipps</h3>
+      <ul>
+        <li>Do Sanity Checks as in try to compare naming conventions with other icon libraries. You can do this easily since sanity check links are provided for each icon.</li>
+        <li>Lines inside an icon should be transformed into paths and if possible have a with of <strong>2px</strong></li>
+        <li>Arrow language should be as much as consistent as possible</li>
+      </ul>
+    </details>
     <h2>Todos</h2>
     <ul>
       <li>Adjust clock hand widths</li>
       <li>Adjust slash</li>
+      <li>Better rounding for wifi icon</li>
+      <li>Remove wrong "top" and "bottom" naming conventions</li>
+      <li>Fix naming convention for plus/minus squares and circles</li>
     </ul>
     <div id="sticky">
       <icontable-topbar
@@ -91,6 +181,7 @@ export class IcontableApp extends LitElement {
           });
         } }
         @naming-convention=${ ( event:CustomEvent ) => this._namingConvention = event.detail }
+        .namingConvention="${ this._namingConvention }"
         .old=${ amountDataOld }
         .new=${ amountDataNew }
         .folderOld=${ amountIconFolderOld }

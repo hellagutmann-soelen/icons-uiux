@@ -1,5 +1,6 @@
 import { LitElement, css, html, } from 'lit'
 import { customElement, property, } from 'lit/decorators.js'
+import { NamingConvention } from '../icontable-app';
 
 
 /**
@@ -17,6 +18,7 @@ export class IcontableTopbar extends LitElement {
   @property( { type: Number } ) new = 0;
   @property( { type: Number, attribute: 'folder-old' } ) folderOld = 0;
   @property( { type: Number, attribute: 'folder-new' } ) folderNew = 0;
+  @property( { type: String, attribute: 'naming-convention' } ) namingConvention: NamingConvention = 'humanized';
 
   render() {
     return html`
@@ -49,13 +51,16 @@ export class IcontableTopbar extends LitElement {
         <option value="different-naming-convention">Different Naming Convention</option>
       </select>
       <label for="naming-convention">Naming Convention</label>
-      <select id="naming-convention" name="naming-convention" @input="${ ( event: Event ) => {
+      <select
+        id="naming-convention"
+        name="naming-convention"
+        @input="${ ( event: Event ) => {
         const namingConvention = ( event.target as HTMLInputElement ).value;
         this.dispatchEvent( new CustomEvent( 'naming-convention', { detail: namingConvention } ) );
       } }">
-        <option value="component">Component (Vue, React)</option>
-        <option value="dasherized">Dasherized (import)</option>
-        <option value="humanized">Humanized</option>
+        <option ?selected="${ this.namingConvention === 'humanized' }" value="humanized">Humanized</option>
+        <option ?selected="${ this.namingConvention === 'component' }" value="component">Component (Vue, React)</option>
+        <option ?selected="${ this.namingConvention === 'dasherized' }" value="dasherized">Dasherized (import)</option>
       </select>
       Old: <span title="amount of old icons dataset">${ this.old }</span>/<span title="amount of old icons in folder">${ this.folderOld }</span>
       New: <span title="amount of new icons dataset">${ this.new }</span>/<span title="amount of new icons in folder">${ this.folderNew }</span>

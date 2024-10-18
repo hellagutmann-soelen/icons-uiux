@@ -47,10 +47,10 @@ export class IcontableCard extends LitElement {
       --icontable-card__background-color-lead: #efefef;
     }
     :host([marked="changed"]) #mark {
-      background: linear-gradient(to bottom left, green 50%,transparent 50%) 100% 0/50px 50px no-repeat;
+      background: linear-gradient(to bottom left, var(--icontable-success) 50%,transparent 50%) 100% 0/50px 50px no-repeat;
     }
     :host([marked="deleted"]) #mark {
-      background: linear-gradient(to bottom left, red 50%,transparent 50%) 100% 0/50px 50px no-repeat;
+      background: linear-gradient(to bottom left, var(--icontable-error) 50%,transparent 50%) 100% 0/50px 50px no-repeat;
     }
     #mark-it {
       border: none;
