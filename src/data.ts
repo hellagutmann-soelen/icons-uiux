@@ -97,14 +97,14 @@ const data: Data[] = [
   {
     id: '5498ef01-1283-4bfe-8f42-4bf3f31cf665',
     oldName: '',
-    name: 'minus-circle',
+    name: 'circle-minus',
     comment: '',
     change: false
   },
   {
     id: 'f355e0f1-f545-4d29-b2d5-a6bac8eaf56e',
     oldName: '',
-    name: 'minus-circle-outline',
+    name: 'circle-minus-outline',
     comment: '',
     change: false
   },
@@ -118,21 +118,21 @@ const data: Data[] = [
   {
     id: '8153566f-fa6c-4e66-ab89-79509b090c02',
     oldName: '',
-    name: 'plus-square',
+    name: 'square-plus',
     comment: '',
     change: false
   },
   {
     id: '15a17753-f7fd-4972-b20b-e0511c61fccb',
     oldName: '',
-    name: 'plus-square-outline',
+    name: 'square-plus-outline',
     comment: '',
     change: false
   },
   {
     id: '63274f3e-8f16-4e2d-8db5-0d39a0555f1d',
     oldName: '',
-    name: 'minus-square-outline',
+    name: 'square-minus-outline',
     comment: '',
     change: false
   },
@@ -146,14 +146,14 @@ const data: Data[] = [
   {
     id: 'b4dfeb4d-a8ff-4179-8b94-82eeac194a2a',
     oldName: '',
-    name: 'plus-circle',
+    name: 'circle-plus',
     comment: '',
     change: false
   },
   {
     id: 'be83208a-35c3-488f-b4f3-9ef73f9f32d4',
     oldName: 'Add Circle',
-    name: 'plus-circle-outline',
+    name: 'circle-plus-outline',
     comment: '',
     change: false
   },
@@ -342,7 +342,7 @@ const data: Data[] = [
   {
     id: '5af37b3e-e836-4bbb-84f3-98befbd15f79',
     oldName: 'Check Box Indeterminate',
-    name: 'minus-square',
+    name: 'square-minus',
     comment: '',
     change: false
   },
@@ -426,21 +426,21 @@ const data: Data[] = [
   {
     id: '4e44597a-382e-4ad2-9a40-2a1c10a879d9',
     oldName: '',
-    name: 'xmark-circle',
+    name: 'circle-xmark',
     comment: '',
     change: false
   },
   {
     id: '8e22e9f9-e34c-4370-8ee9-df4752916994',
     oldName: '',
-    name: 'xmark-square',
+    name: 'square-xmark',
     comment: '',
     change: false
   },
   {
     id: 'a67e7e8c-61b2-4a29-92c7-2c6426a13f4b',
     oldName: '',
-    name: 'xmark-square-outline',
+    name: 'square-xmark-outline',
     comment: '',
     change: false
   },
@@ -463,12 +463,12 @@ const data: Data[] = [
     oldName: 'Clock',
     name: 'clock-circle-outline',
     comment: '',
-    change: false
+    change: true
   },
   {
     id: 'd1b231b2-2cdb-4ab9-867e-bcfa8289a822',
     oldName: 'Close Circle',
-    name: 'xmark-circle-outline',
+    name: 'circle-xmark-outline',
     comment: '',
     change: false
   },
@@ -988,7 +988,7 @@ const data: Data[] = [
     oldName: 'History',
     name: 'clock-rotate-left',
     comment: '',
-    change: false
+    change: true
   },
   {
     id: '10f3bc1a-c792-46cd-adbe-2dd40188be13',
@@ -1168,14 +1168,14 @@ const data: Data[] = [
   {
     id: '41d16762-c0f6-45b5-82e3-8dbfb42673d6',
     oldName: '',
-    name: 'arrow-bottom-right-from-square',
+    name: 'arrow-down-right-from-square',
     comment: '',
     change: false
   },
   {
     id: '2f288efe-8ce0-442a-97a2-dc80dcdbae54',
     oldName: '',
-    name: 'arrow-bottom-left-from-square',
+    name: 'arrow-down-left-from-square',
     comment: '',
     change: false
   },
@@ -1196,14 +1196,14 @@ const data: Data[] = [
   {
     id: 'ed7e6900-a48b-4d77-b9a1-f2e72f0396f9',
     oldName: '',
-    name: 'arrow-bottom-right-top-left',
+    name: 'arrow-down-right-up-left',
     comment: '',
     change: false
   },
   {
     id: '0463f896-a3cc-44ab-a254-cba0474216e3',
     oldName: 'Open in Full',
-    name: 'arrow-bottom-left-top-right',
+    name: 'arrow-down-left-up-right',
     comment: '',
     change: true
   },
@@ -1345,7 +1345,7 @@ const data: Data[] = [
     oldName: 'Refresh',
     name: 'rotate-right',
     comment: '',
-    change: false
+    change: true
   },
   {
     id: '57e8da96-8ad7-4c78-973f-ce947023610f',

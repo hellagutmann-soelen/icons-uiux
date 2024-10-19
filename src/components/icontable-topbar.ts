@@ -64,6 +64,12 @@ export class IcontableTopbar extends LitElement {
       </select>
       Old: <span title="amount of old icons dataset">${ this.old }</span>/<span title="amount of old icons in folder">${ this.folderOld }</span>
       New: <span title="amount of new icons dataset">${ this.new }</span>/<span title="amount of new icons in folder">${ this.folderNew }</span>
+      <button @click="${ () => {
+        const a = document.createElement( 'a' );
+        a.target = '_blank';
+        a.href = '/icons.zip';
+        a.click();
+      }}">Download</button>
     `
   }
 
@@ -73,6 +79,13 @@ export class IcontableTopbar extends LitElement {
       display: block;
       background: white;
       padding: 8px
+    }
+    button {
+      background: var( --icontable-success );
+      border: none;
+      border-radius: 3px;
+      padding: 8px;
+      cursor: pointer;
     }
   `
 }

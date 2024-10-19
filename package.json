@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "zip": "rm public/icons.zip; zip -r public/icons.zip src/assets/icons",
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"

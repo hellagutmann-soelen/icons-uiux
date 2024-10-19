@@ -28,7 +28,7 @@ export type NamingConvention = 'component' | 'dasherized' | 'humanized';
 /**
  * An example element.
  *
- * @slot - This element has a slot
+  @slot - This element has a slot
  * @csspart button - The button
  */
 
@@ -149,14 +149,6 @@ export class IcontableApp extends LitElement {
         <li>Arrow language should be as much as consistent as possible</li>
       </ul>
     </details>
-    <h2>Todos</h2>
-    <ul>
-      <li>Adjust clock hand widths</li>
-      <li>Adjust slash</li>
-      <li>Better rounding for wifi icon</li>
-      <li>Remove wrong "top" and "bottom" naming conventions</li>
-      <li>Fix naming convention for plus/minus squares and circles</li>
-    </ul>
     <div id="sticky">
       <icontable-topbar
         @size=${ ( event:CustomEvent ) => this._size = event.detail }
@@ -182,6 +174,7 @@ export class IcontableApp extends LitElement {
         } }
         @naming-convention=${ ( event:CustomEvent ) => this._namingConvention = event.detail }
         .namingConvention="${ this._namingConvention }"
+        .size=${ this._size }
         .old=${ amountDataOld }
         .new=${ amountDataNew }
         .folderOld=${ amountIconFolderOld }
