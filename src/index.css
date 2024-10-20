@@ -1,7 +1,14 @@
 :root {
+  background-color: white;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   --icontable-success: #36c450;
   --icontable-error: #ff6e4e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    background-color: #272727;
+  }
 }

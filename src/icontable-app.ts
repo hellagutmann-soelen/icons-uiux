@@ -256,6 +256,7 @@ export class IcontableApp extends LitElement {
   static styles = css`
     :host {
       display: block;
+      color: black;
     }
     #sticky {
       position: sticky;
@@ -278,11 +279,13 @@ export class IcontableApp extends LitElement {
       grid-template-columns: repeat(auto-fill, 400px);
       gap: 16px;
     }
-    .old-icon svg {
-      fill: grey;
-    }
     svg {
       display: block;
+    }
+    @media (prefers-color-scheme: dark) {
+      :host {
+        color: white;
+      }
     }
   `
 }

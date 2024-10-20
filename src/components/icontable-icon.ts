@@ -21,9 +21,19 @@ export class IcontableIcon extends LitElement {
   @state() _loaded = false;
   @state() _icon = new Promise<{default: string}>( () => '' );
 
-  constructor() {
-    super();
-  }
+  static styles = css`
+    :host {
+      display: block;
+      --icon-color: black;
+      --icon-color-old: #b2b2b2;
+    }
+    @media (prefers-color-scheme: dark) {
+      :host {
+        --icon-color: white;
+        --icon-color-old: #aaaaaa;
+      }
+    }
+  `
   protected firstUpdated(_changedProperties: PropertyValues): void {
     super.firstUpdated(_changedProperties);
     const observer = new IntersectionObserver((entries) => {
@@ -45,10 +55,11 @@ export class IcontableIcon extends LitElement {
   render() {
     return html`
     <style>
+
       svg {
         width: ${ unsafeCSS( this.size )}px;
         height: ${ unsafeCSS( this.size )}px;
-        fill: ${ this.old ? '#b2b2b2' : 'black' };
+        fill: ${ this.old ? 'var(--icon-color-old)' : 'var(--icon-color)' };
       }
     </style>
     ${ until ( this._icon.then( ( svg) => unsafeSVG( svg.default ) ), '' )}
@@ -56,12 +67,6 @@ export class IcontableIcon extends LitElement {
   }
 
 
-  static styles = css`
-    :host {
-      display: block;
-      /* background: pink; */
-    }
-  `
 }
 
 declare global {

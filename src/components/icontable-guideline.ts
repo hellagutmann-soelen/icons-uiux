@@ -62,6 +62,7 @@ export class IcontableGuideline extends LitElement {
       border: 2px solid black;
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
+      background: white;
       overflow: hidden;
     }
     .caption {

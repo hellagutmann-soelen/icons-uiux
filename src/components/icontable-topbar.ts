@@ -77,9 +77,15 @@ export class IcontableTopbar extends LitElement {
   static styles = css`
     :host {
       display: block;
-      background: white;
+      background-color: white;
       padding: 8px
     }
+    @media (prefers-color-scheme: dark) {
+      :host {
+        background-color: #272727;
+      }
+    }
+
     button {
       background: var( --icontable-success );
       border: none;
