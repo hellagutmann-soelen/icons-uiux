@@ -869,14 +869,14 @@ const data: Data[] = [
     oldName: 'Folder Outline',
     name: 'folder-outline',
     comment: '',
-    change: false
+    change: true
   },
   {
     id: '53364265-c944-4df1-9bb6-50d67ae002ff',
     oldName: 'Folder Filled',
     name: 'folder',
     comment: '',
-    change: false
+    change: true
   },
   {
     id: '8a49e339-28b3-4025-b490-a55cce89e201',

@@ -50,7 +50,7 @@ export class IcontableApp extends LitElement {
 
   render() {
     return html`
-    <h1>Icons UIUX</h1>
+    <h1>Icons UXUI</h1>
     <details>
       <summary>Guidelines</summary>
       <icontable-guideline>
