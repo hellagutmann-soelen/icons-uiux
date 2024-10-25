@@ -1639,7 +1639,7 @@ const data: Data[] = [
     oldName: 'Screenshot',
     name: 'screenshot',
     comment: '',
-    change: false
+    change: true
   },
   {
     id: '6aba6a59-d646-4d35-a19f-72aecc286b8c',

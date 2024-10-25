@@ -194,7 +194,6 @@ export class IcontableApp extends LitElement {
             if( !dataset.marked ) {
               dataset.marked = 'changed';
             } else if ( dataset.marked && dataset.marked === 'changed' ) {
-              console.log('hello')
               dataset.marked = 'deleted';
             } else if ( dataset.marked && dataset.marked === 'deleted' ) {
             dataset.marked = '';

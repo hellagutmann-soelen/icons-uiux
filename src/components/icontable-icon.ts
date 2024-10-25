@@ -38,15 +38,13 @@ export class IcontableIcon extends LitElement {
     super.firstUpdated(_changedProperties);
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        // console.log( entry.intersectionRatio );
+
+        // If in view
         if( entry.intersectionRatio > 0 && !this._loaded && this.name) {
           this._icon = this.name ? import( `../assets/icons${ this.old ? '-old' : '' }/${ this.name }.svg?raw` ) : new Promise( () => '' );
           this._loaded = true;
-        } else {
-          // console.log( 'not in view')
         }
       });
-      // console.count( 'hello');
     }, { root: null, rootMargin: '0px', threshold: 1.0, } );
 
       observer.observe( this );
