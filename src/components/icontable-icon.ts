@@ -60,7 +60,7 @@ export class IcontableIcon extends LitElement {
         fill: ${ this.old ? 'var(--icon-color-old)' : 'var(--icon-color)' };
       }
     </style>
-    ${ until ( this._icon.then( ( svg) => unsafeSVG( svg.default ) ), '' )}
+    ${ until ( this._icon.then( svg => unsafeSVG( svg.default ) ), '' ) }
     `
   }
 
