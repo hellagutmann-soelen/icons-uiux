@@ -1913,6 +1913,12 @@ const data: Data[] = [
     name: 'certificate-outline',
     comment: 'macs365 sidebar icon',
     change: false
+  }, {
+    id: 'f64f706d-acfb-49ab-97a6-9c4331da3167',
+    oldName: '',
+    name: 'vci-mega-macs-x',
+    comment: 'macs365 sidebar icon',
+    change: false
   },
   {
     id: 'd91f6afa-92da-48f5-8481-b74ae394e91e',
@@ -1962,7 +1968,8 @@ const data: Data[] = [
     name: '',
     comment: '',
     change: false
-  }
+  },
+
 ];
 
 export default data;
