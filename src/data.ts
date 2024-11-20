@@ -1082,6 +1082,13 @@ const data: Data[] = [
     change: false
   },
   {
+    id: '56048518-8e88-4dde-b4e0-d60cce71e8e3',
+    oldName: '',
+    name: 'contrast',
+    comment: 'Common icon to visualize contrast. Also sometimes used for when os theme changes.',
+    change: false
+  },
+  {
     id: 'd393f195-8990-4573-80ae-f6ef202f5aaa',
     oldName: 'Light Mode',
     name: 'sun',
